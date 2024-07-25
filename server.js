@@ -1,6 +1,7 @@
 const express = require("express");
 const sequilize = require('./config/conncection');
 
+const model = require('./models/Task');
 
 const app = express();
 const PORT = 3001;
