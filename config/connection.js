@@ -1,7 +1,7 @@
-const Sequilize = require('sequilize');
+const Sequelize = require('sequelize');
 require('dotenv').config();
 
-const sequilize = new Sequilize (process.env.PIKACHU_DB,
+const sequelize = new Sequelize (process.env.PIKACHU_DB,
     process.env.PIKACHU_USER,
     process.env.PIKACHU_PW,
     
@@ -12,4 +12,4 @@ const sequilize = new Sequilize (process.env.PIKACHU_DB,
 )
 
 
-module.exports = sequilize;
+module.exports = sequelize;

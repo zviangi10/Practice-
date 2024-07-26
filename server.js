@@ -1,32 +1,26 @@
 const express = require("express");
-const sequilize = require('./config/conncection');
+const sequelize = require('./config/connection');
+const controllers = require('./controllers');
+const exphbs = require('express-handlebars');
+//const model = require('./models/Task');
 
-const model = require('./models/Task');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-app.get("/pikachu", (req, res) => {
-  res.json("hello world");
+const hbs = exphbs.create({});
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(controllers);
+
+sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log('server started!');
+  })
 });
 
-// GET, POST, PUT, DELETE
-
-app.post()
-app.put()
-app.delete()
-
-// A method is a pre-built function Made by Javascript
-// What is a function?
-app.listen(PORT, () => {
-  console.log("I started my server!");
-});
-
-// // parameters
-// const addSum = (pikachu, alex) => {
-//   console.log(pikachu + alex);
-// };
-
-// addSum(6, 42);
-// addSum(5, 13);
-// addSum(7, 2);
