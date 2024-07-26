@@ -1,6 +1,14 @@
 const Router = require('express').Router();
 const Task = require('../models/Task');
 
+Router.get('/', async(req, res) => {
+    try {
+    const allTask = await Task.findAll();
+    res.status(200).json(allTask);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
 
 
 //localhost:3001/api/
